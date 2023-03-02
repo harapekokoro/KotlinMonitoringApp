@@ -1,16 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services' //追加
 }
 
 android {
     namespace 'com.nifcloud.mbaas.kotlinmonitoringapp'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.nifcloud.mbaas.kotlinmonitoringapp"
         minSdk 29
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -21,12 +22,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "API_KEY", API_KEY)
-            buildConfigField("String", "API_SECRET", API_SECRET)
+            buildConfigField("String", "NCMB_API_KEY", NCMB_API_KEY)
+            buildConfigField("String", "NCMB_CLIENT_KEY", NCMB_CLIENT_KEY)
         }
         debug {
-            buildConfigField("String", "API_KEY", API_KEY)
-            buildConfigField("String", "API_SECRET", API_SECRET)
+            buildConfigField("String", "NCMB_API_KEY", NCMB_API_KEY)
+            buildConfigField("String", "NCMB_CLIENT_KEY", NCMB_CLIENT_KEY)
         }
     }
     compileOptions {
@@ -47,4 +48,12 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.8.1'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    api files('libs/NCMB.jar')
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
+    implementation platform('com.google.firebase:firebase-bom:28.4.0') //追加
+    implementation 'com.google.firebase:firebase-messaging-ktx' //追加
+    implementation 'com.google.firebase:firebase-analytics-ktx' //追加
+    implementation 'com.google.android.gms:play-services-base:18.2.0' //追加
 }
