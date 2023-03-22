@@ -7,11 +7,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DividerItemDecoration
-
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
 
 import com.nifcloud.mbaas.core.NCMB
 import com.nifcloud.mbaas.core.NCMBException
@@ -20,33 +15,12 @@ import com.nifcloud.mbaas.core.NCMBCallback
 
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var recyclerView: RecyclerView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         NCMB.initialize(this.applicationContext, BuildConfig.NCMB_API_KEY, BuildConfig.NCMB_CLIENT_KEY)
         // 配信端末の登録
         NCMB.initializePush(this.applicationContext)
 
-        val textList = listOf(
-            "マリオ",
-            "ルイージ",
-            "ピーチ",
-            "クッパ",
-            "デイジー",
-            "ワリオ",
-            "ワルイージ",
-            "ヘイホー"
-        )
-
-//        val dividerItemDecoration =
-//            DividerItemDecoration(this , LinearLayoutManager(this).orientation)
-//            recyclerView.addItemDecoration(dividerItemDecoration)
-
-        recyclerView = findViewById(R.id.RecyclerList)
-        recyclerView.adapter = RecyclerAdapter(textList)
-        recyclerView.layoutManager = LinearLayoutManager(this)
 
         setContentView(R.layout.activity_main)
         askNotificationPermission()
